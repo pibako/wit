@@ -1,2 +1,2 @@
-* Materialy dydaktyczne do kursu /Programowanie w języku JAVA/
+* /Programowanie w języku JAVA/ - materiały potrzebne na laboratorium.
 
