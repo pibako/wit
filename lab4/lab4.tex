@@ -1,0 +1,177 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[T1]{fontenc}
+\frenchspacing
+\usepackage{indentfirst}
+
+\usepackage[usenames,dvipsnames]{color} % just color
+\usepackage{listings} % code listing
+\lstset{
+  language=java,
+  basicstyle=\footnotesize,
+  numbers=left,
+  breaklines=true,
+  frame=leftline,
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941}
+}
+
+\usepackage{amsmath} % just math
+% \usepackage{amssymb} % allow blackboard bold (aka N,R,Q sets)
+
+\usepackage{hyperref} %hyperlinks
+
+\usepackage{ulem}
+\linespread{1.6}  % double spaces lines
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+\begin{document}
+
+\linespread{1} % single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+\begin{flushright}
+  Laboratorium programowania w języku Java -- 4 
+  \footnote{Na podstawie kursu Uniwersytetu Warszawskiego: \url{http://wazniak.mimuw.edu.pl} }\\
+  Piotr Kowalski,
+  \today
+\end{flushright}
+
+\section{Wczytaj i narysuj}
+Zgadnij jaka funkcja znajduje się w pliku \verb+fun.txt+.
+1-wsza kolumna wartość na osi odciętych (X), 2-ga kolumna wartość funkcji na
+osi rzędnych (Y). Zmodyfikuj lub dodaj nową funkcję na bazie
+\verb+XYSeries createDataSeries()+ znajdującej się w .
+
+\paragraph{}
+
+Do tego zadania wykorzystana zostanie biblioteka JFreeChart. Aby z
+niej korzystać należy:
+\begin{enumerate}
+\item pobrać ze strony:
+  \url{http://www.jfree.org/jfreechart/download.html} aktualną wersję
+  biblioteki,
+\item przekopiować katalog \verb+lib+ wraz z zawartością do np:
+  \verb+/home/user/NetBeansProjects/+,
+\item w NetBeans wejść do \verb+->Tools->Libraries+ i dodać nową
+  bibliotekę \verb+JFreeChart+,
+\item w zakładce Classpath dla tej biblioteki należy podać ścieżkę do
+  jfreechart-1.0.13.jar oraz jcommon-1.0.16.jar znajdujących się w
+  \verb+lib+,
+\item w zakładce Javadoc należy dodać url:
+  \url{http://www.jfree.org/jfreechart/api/javadoc/},
+\item we właściwościach projektu (\verb+Properties+) należy w
+  kategorii \verb+Libraries+ dodać naszą nową bibliotekę w zakładce \verb+Compile+. 
+\end{enumerate}
+
+\paragraph{}
+Przeanalizuj poniższy kod (\verb+DataVisualizer+) w kontekście tego
+zadania:
+\begin{lstlisting}[language=Java]
+// Swing - GUI
+JFrame frame = new JFrame("JFreeChart chart!");
+ChartPanel chartPanel = new ChartPanel(chart);
+frame.getContentPane().add(chartPanel);
+frame.setSize(new Dimension(600, 400));
+frame.setLocation(300, 200);
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+frame.setVisible(true);
+\end{lstlisting}
+
+\section{Tworzenie okna poprzez agregacje (kompozycje)}
+\label{sec:tworz-okna-agreg}
+
+Utwórz nowy projekt o nazwie Windows (nie to nie ma nic wspólnego z \verb+M$ Windows+;).
+Utwórz statyczną, publiczną metodę \verb+createGUI()+, oraz w metodzie \verb+main()+
+wywołaj ją poprzez:
+\begin{lstlisting}[language=Java]
+/* Magiczna sztuczka... GUI popwinno byc zawsze tworzone w ten sposob.
+ * invokeLater przekazuje nowo utworzony watek klasy anonimowej do 
+ * watku obslugi zdarzen. 
+ * Zasada jest prosta - wszystko co dotyczy GUI powinno byc
+ * obslugiwane w watku obslugi zdarzen.
+ */
+javax.swing.SwingUtilities.invokeLater(new Runnable() {
+  public void run() {
+    createGUI();
+  }
+});
+\end{lstlisting}
+
+Wzorując się na poprzednim zadaniu zobacz co się stanie,
+gdy nie zostanie ustawiona domyślna akcja zamknięcia
+okna. Wykorzystując klasę \verb+Toolkit+ oraz jej metodę statyczną \verb+getDefaultToolkit()+
+ narysuj okno o rozmiarach:
+ \begin{enumerate}
+ \item szerokości = 0.5 * szerokość twojego ekranu (w pikselach),
+ \item wysokości = 0.5 * wysokość twojego ekranu,
+ \item oraz początkowej pozycji lewego górnego rogu (x = 0.25 szerokości ekranu, y
+   = 0.25 wysokości ekranu),
+ \end{enumerate}
+czyli idealnie na środku ekranu.
+
+\section{ Tworzenie okna poprzez dziedziczenie z klasy JFrame}
+\label{sec:tworz-okna-dziedzi}
+
+Utwórz nową klasę w projekcie \verb+Windows+ o nazwie
+\verb+SubclassWindow+. Poprzednie zadanie zmodyfikuj tak aby klasa
+\verb+JFrame+ rozszerzała (\verb+extends+) klasę
+\verb+SubclassWindow+. Uruchom aplikację dodając w klasie \verb+SubclassWindow+
+metodę \verb+main+ oraz tworząc nową konfigurację w  NetBeans IDE.
+
+\section{Układy (Layout)}
+Domyślnym układem jest \verb+BorderLayout+, zapoznaj się z jego
+dokumentacją:
+\url{http://download.oracle.com/javase/6/docs/api/java/awt/BorderLayout.html}
+\begin{enumerate}
+\item Wybierz jedno z poprzednich zadań i dodaj do okna dwa przyciski:
+  jeden na górze (''UP'') i jeden na dole ("DOWN"). Po środku wstaw
+  etykietę ("0").
+\item Zmień layout na FlowLayout (zobacz:
+  \url{http://download.oracle.com/javase/6/docs/api/java/awt/FlowLayout.html}). 
+Co się zmieniło?
+\item Layout'y można łączyć\ldots popróbuj z różnymi układami:
+  \verb+GridLayout+, \verb+BoxLayout+, \verb+CardLayout+\ldots
+  (zobacz: \url{http://download.oracle.com/javase/tutorial/uiswing/layout/layoutlist.html})
+\end{enumerate}
+Zwykle GUI tworzone jest jednak z wykorzystaniem środowisk graficznych
+typu NetBeans IDE. Co znacznie ułatwia ale nie zwalnia całkiem ze
+znajomości \verb+Layout+'ów.
+
+\section{Obsługa zdarzeń}
+\label{sec:obsuga-zdarze}
+
+Dodaj do poprzedniego programu obsługę zdarzeń myszy. Tak aby po
+wciśnięciu ''up'' wartość na wyświetlaczu JLabel po środku wzrosła o 1
+a po wciśnięciu ''down'' zmalała o 1.
+\begin{enumerate}
+\item Obsługa rzycisku \verb+up+ powinna być wykonana przy pomocy
+  implementacji klasy anonimowej \verb+MouseAdapter+
+\item Obsługa rzycisku \verb+down+ powinna być wykonana przy pomocy
+  klasy wewnętrznej \verb+DownButtonEvents+ implementującej
+  \verb+MouseListener+
+\item Co by się stało gdybyś dodał bądź do klasy \verb+SubclassWindow+
+  lub \verb+Windows+ rozszerzenie o metody interfejsu \verb+implements MouseListener+? 
+\end{enumerate}
+
+
+\section{Menu}
+\label{sec:menu}
+
+Dodaj menu do głównego okna utworzonego programu (zobacz:
+\url{http://download.oracle.com/javase/tutorial/uiswing/components/menu.html}).
+Wykorzystaj: \verb+JMenuBar+, \verb+JMenu+, \verb+JMenuItem+.
+\begin{enumerate}
+\item Dodaj dwa \verb+JMenuItem+'y ''up'' i ''down''
+\item Podłącz tą samą obsługę zdarzeń co przyciski ''up'' i ''down''.
+\end{enumerate}
+
+
+\end{document}
