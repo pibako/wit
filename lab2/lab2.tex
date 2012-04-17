@@ -1,0 +1,67 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[T1]{fontenc}
+\frenchspacing
+\usepackage{indentfirst}
+
+\usepackage{amsmath} % just math
+%\usepackage{amssymb} % allow blackboard bold (aka N,R,Q sets)
+\usepackage{ulem}
+\linespread{1.6}  % double spaces lines
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+\begin{document}
+
+\linespread{1} % single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+\begin{flushright}
+Laboratorium programowania w języku Java -- 2 
+\footnote{Na podstawie kursów MIT OCW} \\
+Piotr Kowalski,
+\today
+\end{flushright}
+
+\section{Projekt}
+Utwórz projekt Shapes w środowisku Netbeans z plikami, które znajdują
+się w dołączonym archiwum {\it shapes.zip}. Wszystkie klasy powinny
+znajdować się w pakiecie \verb+shapes+.
+
+\section{Klasy}
+Analiza, testowanie i modyfkacja klas specyfikujących klasę \verb+Shape+ (Kształt).
+
+Zaimplementowano dwie klasy \verb+Square+ i \verb+Circle+. Dla każdej z tych klas jesteśmy zainteresowani otrzymaniem pola powierzchni figury (zauważ, że metoda \verb+area+ jest dziedziczona z interfejsu \verb+Shape+).
+
+\begin{enumerate}
+\item Przetestuj \verb+Square+ oraz \verb+Circle+ - z wykorzystaniem JUnit 3.
+\item Zaimplementuj klasę \verb+Triangle+ (trójkąt), która również będzie dziedziczyła z \verb+Shape+. Klasa \verb+Triangle+ powinna mieć ten sam zestaw metod co pozostałe klasy dziedziczące. Klasa powinna być inicjalizowana wartościami długości podstawy oraz wysokości na nią opuszczonej (\verb+base+ oraz \verb+height+).  
+\item Pamiętaj o testowaniu każdej metody.
+\end{enumerate}
+
+\section{Kolekcje}
+Być może wygodniejszą formą pracy z kształtami będzie zgromadzenie ich w zbiorze \verb+ShapeSet+. Klasa ShapeSet zarządza zbiorem obiektów typu Shape. 
+
+\begin{enumerate}
+\item Zastanów się jak chcesz przechowywać kształty? Co będzie odpowiednie \verb+set+, \verb+list+, \verb+queue+ czy może \verb+map+. Jakie są zalety i wady?
+\item Utwórz metodę \verb+addShape+ dodającą kształt do zbioru. Zapewnij, że żadne dwa te same kształty nie znajdą się w zbiorze.
+\item Zaimplementuj metodę \verb+iterator+ zwracającą iterator do zbioru elementów.
+\item Uzupełnij metodę \verb+toString+.
+\item Pamiętaj o testowaniu każdej metody.
+\end{enumerate}
+
+\section{Wyszukiwanie i plik}
+Teraz gdy mamy implementację klas reprezentujących kształty oraz zbior kształtów należy zaimplementować dwie metody w klasie \verb+Shapes+ (nie pomylić z klasą \verb+Shape+). 
+
+\begin{enumerate}
+\item \verb+findLargest+ - nalezy znaleźć figury o największym polu i utworzyć listę a nastepnie przekazać ją jako wartość zwracaną.
+\item \verb+readShapesFromFile+ - Aby ułatwić sobie tworzenie obiektów do projektu dołączony jest plik z deklaracją kształtów. Należy go wczytać i utworzyć obiekt ShapeSet zawierający kształty występujące w pliku. (rozwiązanie należy wyszukać w dokumentacji lub przykładach w internecie --- IO Javy zostanie dokładniej omówione na następnych zajęciach)
+\item Pamiętaj o testowaniu każdej metody.
+\end{enumerate}
+
+\end{document}
