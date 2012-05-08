@@ -1,0 +1,85 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[T1]{fontenc}
+\frenchspacing
+\usepackage{indentfirst}
+
+\usepackage[usenames,dvipsnames]{color} % just color
+\usepackage{listings} % code listing
+\lstset{
+  language=java,
+  basicstyle=\footnotesize,
+  numbers=left,
+  breaklines=true,
+  frame=leftline,
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941}
+}
+
+\usepackage{amsmath} % just math
+% \usepackage{amssymb} % allow blackboard bold (aka N,R,Q sets)
+
+\usepackage{hyperref} %hyperlinks
+
+\usepackage{ulem}
+\linespread{1.6}  % double spaces lines
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+\begin{document}
+
+\linespread{1} % single spaces lines
+\small \normalsize %% dumb, but have to do this for the prev to work
+\begin{flushright}
+  Laboratorium programowania w języku Java -- 5 
+  % \footnote{Na podstawie kursu Uniwersytetu Warszawskiego:
+  % \url{http://wazniak.mimuw.edu.pl} }
+  \\
+  Piotr Kowalski,
+  \today
+\end{flushright}
+
+\section{Model-View-Controller}
+\label{sec:mvc}
+
+Model-View-Controller chyba po raz pierwszy opisany przez twórcę {\em
+  Trygve Reenskaug}'a na przykładzie języka \verb+Smalltalk+. Jest jednym z
+najważniejszych wzorców projektowych i koncepcji wykorzystywanych przy
+tworzeniu aplikacji z GUI. Służy rozdzieleniu warstwy widoku aplikacji
+od jej mózgu (modelu). Zaimplementowany i wykorzystywany m.in. w:
+\begin{itemize}
+\item Cocoa (Mac OS X Framework) -- \verb+Objective-C+
+\item JSF, Spring, Struts, Oracle Application Framework, etc. -- \verb+Java+
+\item Dojo -- \verb+JavaScript+
+\item ASP.NET MVC Framework -- \verb+ASP+
+\item Joomla, Zend, Symfony, DooPHP -- \verb+PHP+
+\item Django -- \verb+Python+
+\item Ruby on Rails -- \verb+Rails+
+\end{itemize}
+
+\section{Temperatura}
+\label{sec:temperatura}
+
+Zadanie na dziś:
+\begin{itemize}
+\item zapoznać się z treścią artykułu:
+  \url{http://csis.pace.edu/~bergin/mvc/mvcgui.html}
+\item napisać program który będzie te same dane prezentował oraz pozwalał je modyfikować w różny sposób,
+\item dodać nową wizualizację (zamiast słupka rtęci narysować wykres kołowy),
+\item zmienić implementację aby można było zmieniać miasto dla którego
+  wyświetlamy temperaturę, w tym celu należy:
+  \begin{enumerate}
+  \item zmodyfikować model aby przechowywał informację o miejscach i
+    odpowiadającej jej temperaturze
+  \item dodać nowy widok z combo-box'em i możliwością zmiany miejscowości.
+  \end{enumerate}
+
+\end{itemize}
+\end{document}
