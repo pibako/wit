@@ -23,10 +23,10 @@ public class Client {
       out = new PrintWriter(clientSocket.getOutputStream(), true);
       in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
     } catch (UnknownHostException e) {
-      System.err.println("Don't know about host: mvc.");
+      System.err.println("Don't know about host: localhost.");
       System.exit(1);
     } catch (IOException e) {
-      System.err.println("Couldn't get I/O for the connection to: taranis.");
+      System.err.println("Couldn't get I/O for the connection to: localhost.");
       System.exit(1);
     }
 
