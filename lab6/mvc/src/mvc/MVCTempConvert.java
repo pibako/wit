@@ -17,5 +17,6 @@ public class MVCTempConvert {
     //new CelsiusGUI(temperature,100, 400);
     new GraphGUI(temperature, 400, 200);
     new SliderGUI(temperature, 400, 100);
+    new WeatherClient(temperature, 750, 100);
   }
 }
